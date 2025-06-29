@@ -66,11 +66,16 @@ async def file_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         file_link = f"https://t.me/{channel_username}/{forwarded_message.message_id}"
         
         # 4. Insert the data into your Supabase table
-        logging.info(f"Saving link to Supabase: {file_link}")
-        data, count = supabase.table('files').insert({
-            'user_id': user.id,
-            'file_link': file_link
-        }).execute()
+      logging.info(f"Saving link to Supabase: {file_link}")
+      
+      # NEW LINE: Get the filename from the original message
+      file_name = original_message.document.file_name
+
+      data, count = supabase.table('files').insert({
+          'user_id': user.id,
+          'file_link': file_link,
+          'file_name': file_name  # <-- NEW LINE: Add the filename to the database
+      }).execute()
 
         await original_message.reply_text(
             f"✅ File saved!\n\nHere is your permanent link:\n{file_link}"
