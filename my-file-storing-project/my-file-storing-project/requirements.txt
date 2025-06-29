@@ -1,0 +1,5 @@
+python-telegram-bot
+supabase
+Flask
+Flask-Cors
+gunicorn
