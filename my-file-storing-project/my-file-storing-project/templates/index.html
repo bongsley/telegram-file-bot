@@ -52,7 +52,7 @@
                         const listItem = document.createElement('li');
                         const link = document.createElement('a');
                         link.href = item.file_link;
-link.textContent = item.file_name; // <-- This line now sets the text to be the filename
+                        link.textContent = item.file_name; // <-- This line now sets the text to be the filename
                         link.target = '_blank';
                         listItem.appendChild(link);
                         fileList.appendChild(listItem);
